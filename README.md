@@ -2,7 +2,7 @@
 
 This repository provides a convenience script to bootstrap and deploy three Pulumi projects 
 (Basic, Standard, and Advanced Cockroach Cloud clusters) in AWS. So, no need to do these following steps as
-the script will:
+the deployment script will:
 
 1. Create project directories if they don’t exist.
 2. Scaffold a minimal TypeScript Pulumi project (`Pulumi.yaml`, `index.ts`).
@@ -35,20 +35,15 @@ Each of the three projects will be created/used under these directories:
 Customize each folder’s `index.ts` as needed.
 
 ## Usage
+*NOTE:*  This will deploy all three projects which is probably not what you want to do.  Look at the bottom of the script to see it has a for loop through all three subdirectories.  Make alterations here to do only a single folder.
 
-1. **Make the deploy script executable** (if not already):
-
-   ```bash
-   chmod +x deploy.sh
-   ```
-
-2. **Run the script** to deploy all three projects under the `dev` stack:
+1. **Run the script** to deploy all three projects under the `dev` stack:
 
    ```bash
-   ./deploy.sh
+   ./deployStack.sh
    ```
 
-3. The script will:
+2. The script will:
 
   * Create or reuse the `dev` stack
   * Install dependencies
