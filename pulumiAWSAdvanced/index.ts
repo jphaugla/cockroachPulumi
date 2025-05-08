@@ -4,6 +4,8 @@ import * as cockroach from "@pulumiverse/cockroach";
 // 1. Load your Cockroach API key from Pulumi config
 const cfg    = new pulumi.Config("cockroach");
 const apikey = cfg.requireSecret("apikey");
+const clusterCfg = new pulumi.Config("cluster");
+const nodeCount  = clusterCfg.requireNumber("nodeCount");
 
 // 2. Create the Cockroach provider (all-lowercase “apikey”)
 const provider = new cockroach.Provider("cockroach", {
@@ -32,7 +34,7 @@ const fixedCluster = new cockroach.Cluster("fixedCluster", {
     },
     regions: [{
         name:      "us-east-1",
-        nodeCount: 3,                       // 3 nodes in this region
+        nodeCount,                       // 3 nodes in this region
     }],
     parentId:        parentId,              // <-- here’s the variable we declared above
     deleteProtection: false,

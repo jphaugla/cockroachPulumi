@@ -29,8 +29,13 @@ deploy_project() {
     pulumi stack init "${STACK_NAME}"
   fi
 
-  # 6. Configure the Cockroach API key
+  # 6. Configure the Cockroach API key 
   pulumi config set --secret cockroach:apikey "$COCKROACH_API_KEY"
+
+  # 6a. Only for ADVANCED project, set nodeCount to 3
+  if [[ "${DIRNAME}" == "pulumiAWSAdvanced" ]]; then
+    pulumi config set cluster:nodeCount 3
+  fi
 
   # (Optional) If you need to target a folder by ID:
   # pulumi config set parentFolderId "<YOUR_FOLDER_ID>"
@@ -43,7 +48,8 @@ deploy_project() {
 }
 
 # Run it for each variant
-for PROJECT in pulumiAWSBasic pulumiAWSStandard pulumiAWSAdvanced; do
-  deploy_project "$PROJECT"
-done
-
+# for PROJECT in pulumiAWSBasic pulumiAWSStandard pulumiAWSAdvanced; do
+#   deploy_project "$PROJECT"
+# done
+# only run advanced
+deploy_project pulumiAWSAdvanced
