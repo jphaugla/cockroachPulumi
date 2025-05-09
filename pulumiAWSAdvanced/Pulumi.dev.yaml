@@ -1,4 +1,5 @@
 config:
   cockroach:apikey:
-    secure: AAABAD7Y8YFG4dHLwnVDgGLKAvraI9df12V0MfKVIvIZYjcmsxb59VGEflgX8Q8AIwMto1F/zHHpPjgKP//ghAOzcgISdrTWtxI+2mR3q8I1iXKdnP+COGmTACt7nwQkFEdGxrM=
+    secure: AAABAPBNTBeakg0UtRdlv5K8sAwJH5HzjXZPC+XjQ+SSz35v6uxAEeaTz1BcVUU7enoaRv0WeI5OYBxlJJUDvA5xUxPatfasVlFuew9+2cptl8WdArJe4B25xyl/HSnSo/7t/5Y=
   cluster:nodeCount: "4"
+  cluster:numVirtualCpus: "8"

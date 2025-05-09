@@ -6,6 +6,7 @@ const cfg    = new pulumi.Config("cockroach");
 const apikey = cfg.requireSecret("apikey");
 const clusterCfg = new pulumi.Config("cluster");
 const nodeCount  = clusterCfg.requireNumber("nodeCount");
+const numVirtualCpus  = clusterCfg.requireNumber("numVirtualCpus");
 
 // 2. Create the Cockroach provider (all-lowercase “apikey”)
 const provider = new cockroach.Provider("cockroach", {
@@ -29,7 +30,7 @@ const fixedCluster = new cockroach.Cluster("fixedCluster", {
     cloudProvider:   "AWS",
     plan:            "ADVANCED",            // ADVANCED supports dedicated nodes
     dedicated: {
-        numVirtualCpus: 4,                  // 4 vCPUs per node
+        numVirtualCpus,                     // number of vCPUs per node
         storageGib:     64,                 // 64 GiB disk per node
     },
     regions: [{

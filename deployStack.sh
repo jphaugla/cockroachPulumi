@@ -35,6 +35,7 @@ deploy_project() {
   # 6a. Only for ADVANCED project, set nodeCount to 3
   if [[ "${DIRNAME}" == "pulumiAWSAdvanced" ]]; then
     pulumi config set cluster:nodeCount 3
+    pulumi config set cluster:numVirtualCpus 4
   fi
 
   # (Optional) If you need to target a folder by ID:
